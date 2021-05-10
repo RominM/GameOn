@@ -28,14 +28,14 @@ const closeModal = () => {
 cross.addEventListener("click", closeModal);
 
 //form
-function validate() {
+document.querySelector('#subscribe').addEventListener('button', function() {
 
   var firstName = document.forms["reserve"]["first"].value;
   var last = document.forms["reserve"]["last"].value;
   var mail = document.forms["reserve"]["email"].value;
   var date = document.forms["reserve"]["birthdate"].value;
   var quantity = document.forms["reserve"]["quantity"].value;
-  var errorMsg = document.querySelector('.error');
+  var errorMsg = document.querySelector('.formData');
 
   //PRENOM
   if (firstName != '') {
@@ -87,4 +87,4 @@ function validate() {
   } else {
     console.log('Champs EMAIL est vide sheewee !');
   }
-}
+})

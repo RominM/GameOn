@@ -57,26 +57,27 @@
         <div class="modal-body">
 
           <!-- FORMULAIRE D'INSCRIPTION -->
-          <form name="reserve" action="index.html" method="get" onsubmit="return validate();">
+          <form id='subscribe' name="reserve" action="index.html" method="get" onsubmit="return validate();">
 
             <!-- PRENOM -->
             <div class="formData">
               <label>Prénom</label><br>
-              <input class="text-control" type="text" id="first" name="first" minlength="2" /><br>
-              <span data-error="Veuillez entrez un Prénom valide" class="error"></span>
+              <input class="text-control" type="text" id="first" name="first" minlength="2" data-error="Veuillez entrez un Prénom valide" /><br>
             </div>
 
             <!-- NOM -->
             <div class="formData">
               <label>Nom</label><br>
               <input class="text-control" type="text" id="last" name="last" /><br>
-              <span data-error="Veuillez entrez un Prénom valide" class="error"></span>
+              <!-- MSG ERROR VIA P -->
+              <p data-error="Veuillez entrez un Prénom valide" class="error"></p>
             </div>
 
             <!-- EMAIL -->
             <div class="formData">
               <label>E-mail</label><br>
               <input class="text-control" type="email" id="email" name="email" /><br>
+              <!-- MSG ERROR VIA SPAN -->
               <span data-error="Veuillez entrez un Prénom valide" class="error"></span>
             </div>
 
@@ -84,6 +85,7 @@
             <div class="formData">
               <label>Date de naissance</label><br>
               <input class="text-control" type="date" id="birthdate" name="birthdate" /><br>
+              <!-- MSG ERROR VIA SPAN -->
               <span data-error="Veuillez entrez un Prénom valide" class="error"></span>
             </div>
 
@@ -156,7 +158,8 @@
               <br>
             </div>
             <!-- SUBMIT BTN -->
-            <input class="btn-submit" type="button" class="button" value="C'est parti" onclick="validate()" />
+            <input type="submit" class="button" value="C'est parti" /><!-- onclick="validate()" --> <!--change le type:button par type:submit-->
+            
           </form>
         </div>
       </div>
@@ -168,7 +171,7 @@
       Copyright 2014 - 2020, GameOn Inc.
     </p>
   </footer>
-  
+
   <script src="modal.js"></script>
 </body>
 
