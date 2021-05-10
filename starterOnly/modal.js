@@ -30,54 +30,61 @@ cross.addEventListener("click", closeModal);
 //form
 function validate() {
 
-  var first = document.forms["reserve"]["first"].value;
+  var firstName = document.forms["reserve"]["first"].value;
   var last = document.forms["reserve"]["last"].value;
   var mail = document.forms["reserve"]["email"].value;
   var date = document.forms["reserve"]["birthdate"].value;
   var quantity = document.forms["reserve"]["quantity"].value;
+  var errorMsg = document.querySelector('.error');
 
   //PRENOM
-  if (first != '') {
-    if (first.match(/^([a-zA-Z ]+)$/)) {
-      console.log("Le prénom est : " + first);
+  if (firstName != '') {
+    if (firstName.match(/^([a-zA-Z ]+){2,}$/)) {
+      console.log("Le prénom est : " + firstName);
+      document.querySelector('#first').style.border = "none";
     } else {
-      console.log("Wow wow wow ! C'est pas ce qu'on t'as demandé !");
-      document.querySelector('#first').style.borderWidth = "2px";
-      document.querySelector('#first').style.borderColor = "red";
-      document.querySelector('#first').innerHTML = "";
-      document.querySelector('#first').focus();
+      console.log(errorMsg);
+      // console.log("Prénom : Wow wow wow ! C'est pas ce qu'on t'as demandé !");
+      // document.querySelector('#first').style.borderWidth = "2px";
+      // document.querySelector('#first').style.borderColor = "red";
+      // document.querySelector('#first').innerHTML = "";
+      return false; 
+      // document.getElementById('#first').innerHTML="";  
+      // firstName.focus(); 
+      // document.querySelector('#first').focus();
     }
   } else {
-    console.log('Champs PRENOM est vide sheewee !');
+    console.log('Le champs PRENOM est vide sheewee !');
   }
-}
 
-//NOM
-if (last != '') {
-  if (last.match(/^([a-zA-Z ]+)$/)) {
-    console.log("Le nom est : " + last);
-  } else {
-    console.log("Le format n'est pas correct");
-    document.querySelector('#last').style.borderWidth = "2px";
-    document.querySelector('#last').style.borderColor = "red";
-    document.querySelector('#last').innerHTML = "";
-    document.querySelector('#last').focus();
-  }
-} else {
-  console.log('Champs NOM est vide sheewee !');
-}
 
-//EMAIL
-if (mail != '') {
-  if (mail.match(/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i)) {
-    console.log("L'adresse email est : " + mail);
+  //NOM
+  if (last != '') {
+    if (last.match(/^([a-zA-Z ]+){2,}$/)) {
+      console.log("Le nom est : " + last);
+      document.querySelector('#last').style.border = "none";
+    } else {
+      console.log("Nom :Heu... Tu plaisantes ?");
+      document.querySelector('#last').style.borderWidth = "2px";
+      document.querySelector('#last').style.borderColor = "red";
+      document.querySelector('#last').innerHTML = "";
+    }
   } else {
-    console.log("Le format n'est pas correct");
-    document.querySelector('#email').style.borderWidth = "2px";
-    document.querySelector('#email').style.borderColor = "red";
-    document.querySelector('#email').innerHTML = "";
-    document.querySelector('#email').focus();
+    console.log('Champs NOM est vide sheewee !');
   }
-} else {
-  console.log('Champs EMAIL est vide sheewee !');
+
+  //EMAIL
+  if (mail != '') {
+    if (mail.match(/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i)) {
+      console.log("L'adresse email est : " + mail);
+      document.querySelector('#email').style.border = "none";
+    } else {
+      console.log("Email : Là t'éxagère...");
+      document.querySelector('#email').style.borderWidth = "2px";
+      document.querySelector('#email').style.borderColor = "red";
+      document.querySelector('#email').innerHTML = "";
+    }
+  } else {
+    console.log('Champs EMAIL est vide sheewee !');
+  }
 }

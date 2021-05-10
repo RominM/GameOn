@@ -216,6 +216,11 @@ input {
   outline: none;
 }
 
+.error {
+  font-size: 0.5em;
+  color: red;
+}
+
 .text-control {
   margin: 0;
   padding: 8px;
