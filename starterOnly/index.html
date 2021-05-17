@@ -1,4 +1,4 @@
-git s<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 
 <head>
@@ -57,7 +57,7 @@ git s<!DOCTYPE html>
                 <div class="modal-body">
 
                     <!-- FORMULAIRE D'INSCRIPTION -->
-                    <form id='subscribe' name="reserve" action="index.html" method="get" onsubmit="return validate();">
+                    <form id='subscribe' name="reserve" action="index.html" method="get">
 
                         <!-- PRENOM -->
                         <div class="formData">
@@ -77,22 +77,21 @@ git s<!DOCTYPE html>
                         <div class="formData">
                             <label>E-mail</label><br>
                             <input class="text-control" type="email" id="email" name="email" /><br>
-                            <!-- MSG ERROR VIA SPAN -->
-                            <span class="error"></span>
+                            <p class="error"></p>
                         </div>
 
                         <!-- BIRTHDATE -->
                         <div class="formData">
                             <label>Date de naissance</label><br>
                             <input class="text-control" type="date" id="birthdate" name="birthdate" /><br>
-                            <!-- MSG ERROR VIA SPAN -->
-                            <span data-error="Veuillez entrez un Prénom valide" class="error"></span>
+                            <p class="error"></p>
                         </div>
 
                         <!-- HOW MANY -->
                         <div class="formData">
                             <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                             <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                            <p class="error"></p>
                         </div>
 
                         <!-- CITY -->
