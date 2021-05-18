@@ -5,6 +5,7 @@
 //GLOBAL ELEMENTS
 const modalbg = document.querySelector(".bground"); //bg formulaire
 const modalBtn = document.querySelectorAll(".modal-btn"); //Bouton "je m'inscris"
+
 //FORM ELEMENTS
 const formData = document.querySelectorAll(".formData"); //<div> du formulaire qui contient les <input>
 const cross = document.querySelector('.close'); //croix pour fermer formulaire
@@ -15,11 +16,17 @@ const date = document.querySelector('#birthdate'); //<input> Date
 const contest = document.querySelector('#quantity'); //<input> Champs de reponse "Combien"
 const submitBtn = document.querySelector('#submit'); //Boutton "c'est partie"
 
-var radio = document.querySelector('.checkbox-input')
+var radio1 = document.querySelector('#location1');//New York
+var radio2 = document.querySelector('#location2');//San Fransico
+var radio3 = document.querySelector('#location3');//Seattle
+var radio4 = document.querySelector('#location4');//Chicago
+var radio5 = document.querySelector('#location5');//Boston
+var radio6 = document.querySelector('#location6');//Portland
+
 var checkBox = document.querySelector("#checkbox1");//CGU
 
 //ERROR
-var error = document.querySelectorAll('.formData[data-error-visible="true"]');
+// var error = document.querySelectorAll('.formData[data-error-visible="true"]');
 
 //DATE*************************************************************************************************************************
 const creatDate = () => {
@@ -95,7 +102,6 @@ const checkInputFirstName = () => {
       state.firstName.data = firstName.value;
       state.firstName.status = true;
    } else {
-      error = "true";
       state.firstName.data = firstName.value;
       state.firstName.status = false;
    }
@@ -140,29 +146,45 @@ const checkInputContest = () => {
       state.contest.data = contest.value;
       state.contest.status = false;
    } else {
-      state.contest.data = data.value;
+      state.contest.data = contest.value;
       state.contest.status = true;
    }
 }
 //_______________________________________________
 // FONCTION CHECK VILLE__________________________
+
+   /*switch (checkInputCity) {
+   
+      case radio1.checked == true: 
+         state.city.status = true;
+         break;
+      case radio2.checked == true:
+         state.city.status = true;
+         break;
+      case radio3.checked == true:
+         state.city.status = true;
+         break;
+      case radio4.checked == true:
+         state.city.status = true;
+         break;
+      case radio5.checked == true:
+         state.city.status = true;
+         break;
+      case radio6.checked == true:
+         state.city.status = true;
+         break;
+      default:
+         state.city.status = false;
+}*/
+
 const checkInputCity = () => {
 
-   if (radio.checked == true) {
-      state.city.status = true;
-      console.log("true");
+   if (radio1.checked || radio2.checked || radio3.checked || radio4.checked || radio5.checked || radio6.checked == true) {
+      state.cgu.status = true;
    } else {
-      state.city.status = false;
-      console.log("false");
+      state.cgu.status = false;
    }
 }
-// const checkInputCity = () => {
-//    if () {
-//       state.city.status = true;
-//    } else {
-//       state.city.status = false;
-//    }
-// }
 
 //_______________________________________________
 //FONCTION CHECK CGU_____________________________
@@ -170,10 +192,8 @@ const checkInputCgu = () => {
 
    if (checkBox.checked == true) {
       state.cgu.status = true;
-      console.log("les cgu sont checked");
    } else {
       state.cgu.status = false;
-      console.log("les cgu ne sont pas checked");
    }
 }
 //_______________________________________________
@@ -186,7 +206,6 @@ const checkStatus = () => {
 // launch modal form
 const launchModal = () => {
    modalbg.style.display = "block";
-   error.display = "none";
 }
 
 // Close modal form 'X Button'
@@ -195,11 +214,12 @@ const closeModal = () => {
 }
 
 // Display error message
-// const displayError = () => {
-// error.style.display = "block";
-// }
+const displayError = () => {
+error.style.display = "block";
+}
+
 // // ========================
-// //       DÉCLENCHEUR
+// //       DÉCLENCHEUR    LECTURE DES DECLARATIONS
 // // ========================
 
 // // launch modal event
@@ -216,79 +236,23 @@ cross.addEventListener("click", closeModal);
 
 // submit form event
 submitBtn.addEventListener('click', (event) => {
+   //STOP FOR CHECK
    event.preventDefault();
-
-
-   // logique
+   
+   //PRENOM
    checkInputFirstName();
+   //NOM
    checkInputLastName();
+   //EMAIL
    checkInputEmail();
+   //DATE
    checkInputDate();
+   //TOURNOIS
    checkInputContest();
+   //VILLE
    checkInputCity();
+   //CGU
    checkInputCgu();
-   //...etc...
+   //CHECK STATUS
    checkStatus(state);
-
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // //DOM => var
-// // //DECLARATION FUNCTION => CONST NomDeLaFonction ... = () => {}
-// // //
-
-// // //STATE
-// // //    var resultat = {
-// // //    firstName: (
-// // //       data : '';
-// // //       status: false;
-// // //    ),
-// // //    lastName: (
-// // //       data : '';
-// // //       status: false;
-// // //    ), 
-// //       // email: (
-// // //       data : '';
-// // //       status: false;
-// // //    ),
-// // //    ... 
-// // // }
-
-
-// // //DECLANCHEUR addEventListener('click, (e) => )
-
-// // // NomDeLaFonction()
-
-// // //QUAND C'EST PAS BON :
-// // // resultat.firstName.data = firstName.value
-// // // resultat.firstName.status = false
-// // //QUAND C'EST BON :
-// // // resultat.firstName.data = firstName.value
-// // // resultat.firstName.status = true
