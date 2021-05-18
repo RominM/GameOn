@@ -26,8 +26,10 @@ var radio6 = document.querySelector('#location6');//Portland
 var checkBox = document.querySelector("#checkbox1");//CGU
 
 //ERROR
-// var error = document.querySelectorAll('.formData[data-error-visible="true"]');
-
+var error = document.querySelector('.formData[data-error-visible]');
+// error.setAttribute("disabled", "");
+console.log(error);
+// 
 //DATE*************************************************************************************************************************
 const creatDate = () => {
    let inputDate = date.value;
@@ -101,9 +103,12 @@ const checkInputFirstName = () => {
    if (firstName.value.length > 2) {
       state.firstName.data = firstName.value;
       state.firstName.status = true;
+      console.log("Everything is right")
+      console.log(error);
    } else {
       state.firstName.data = firstName.value;
       state.firstName.status = false;
+      console.log("The message could be actived")
    }
 }
 //______________________________________________
@@ -112,6 +117,7 @@ const checkInputLastName = () => {
    if (lastName.value.length > 2) {
       state.lastName.data = lastName.value;
       state.lastName.status = true;
+      
    } else {
       state.lastName.data = lastName.value;
       state.lastName.status = false;
