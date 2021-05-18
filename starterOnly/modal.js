@@ -4,6 +4,7 @@
 
 //ON RECUPERE L'ELEMENT "..." A PARTIR DU FICHIER HTMTL (document) ET ON LE NOMME.
 
+
 //GLOBAL ELEMENTS
 const modalbg = document.querySelector(".bground"); //bg formulaire
 const modalBtn = document.querySelectorAll(".modal-btn"); //Bouton "je m'inscris"
@@ -16,8 +17,10 @@ const email = document.querySelector('#email'); //<input> email
 const date = document.querySelector('#birthdate'); //<input> Date
 const quantity = document.querySelector('#quantity'); //<input> Champs de reponse "Combien"
 const submitBtn = document.querySelector('#submit'); //Boutton "c'est partie"
+
 //ERROR
-// const errorMsg = document.querySelectorAll('.data-error'); //Message d'erreur
+var error = document.querySelector('[data-error-visible="false"]');
+console.log(error);
 
 //DATE
 const creatDate = () => {
@@ -26,9 +29,19 @@ const creatDate = () => {
    
    const year = inputDate[0];
    const month = inputDate[1];
+
+   var nmbMois;
+
+   if(month.includes("0") && month.startsWith("0")){
+
+     nmbMois = month[1];
+   }else{
+      nmbMois = month;
+   }
+
    const day = inputDate[2];
-   const months = ['janvier', 'fevrier', 'mars', 'avril', 'mai', 'juin', 'juillet', 'aout', 'septembre', 'octobre', 'novembre', 'decembre'];
-   const cleanDate = day + ' ' + months[month] + ' ' + year;
+   const months = ['janvier','fevrier','mars','avril','mai','juin','juillet','aout','septembre','octobre','novembre','decembre'];
+   const cleanDate = day + ' ' + (months[nmbMois-1]) + ' ' + year;
    console.log(cleanDate);
    return cleanDate;
 }
@@ -77,11 +90,10 @@ const editNav = () => {
 //Fonction check prénom
 const checkInputFirstName = () => {
    if (firstName.value.length > 2) {
-      document.querySelector('.error').innerHTML = '';
       state.firstName.data = firstName.value;
       state.firstName.status = true;
    } else {
-      document.querySelector('.error').innerHTML = 'Veuillez saisir un Prénom';
+      error = "true";
       state.firstName.data = firstName.value;
       state.firstName.status = false;
    }
@@ -90,11 +102,15 @@ const checkInputFirstName = () => {
 //Fonction check nom
 const checkInputLastName = () => {
    if (lastName.value.length > 2) {
-      document.querySelector('.error').innerHTML = '';
+   
+      document.querySelector('.error_lastname').innerHTML = '';
       state.lastName.data = lastName.value;
       state.lastName.status = true;
    } else {
-      document.querySelector('.error').innerHTML = 'Veuillez saisir un Nom';
+
+      var test = document.querySelector('.error_lastname');
+      test.classList.add(".formData");
+     // document.querySelector('.error_lastname').innerHTML = 'Veuillez saisir un Nom';
       state.lastName.data = lastName.value;
       state.lastName.status = false;
    }
