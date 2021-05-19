@@ -26,9 +26,8 @@ var radio6 = document.querySelector('#location6');//Portland
 var checkBox = document.querySelector("#checkbox1");//CGU
 
 //ERROR
-var error = document.querySelector('.formData[data-error-visible]');
-// error.setAttribute("disabled", "");
-console.log(error);
+var error = document.querySelector('.formData[data-error-visible="false"]');
+
 // 
 //DATE*************************************************************************************************************************
 const creatDate = () => {
@@ -97,54 +96,63 @@ const editNav = () => {
       x.className = "topnav";
    }
 }
+
 //______________________________________________
 //FONCTION CHECK PRENOM_________________________
 const checkInputFirstName = () => {
    if (firstName.value.length > 2) {
       state.firstName.data = firstName.value;
       state.firstName.status = true;
-      console.log("Everything is right")
-      console.log(error);
+      firstName.parentNode.setAttribute("data-error-visible", "false");
    } else {
       state.firstName.data = firstName.value;
       state.firstName.status = false;
-      console.log("The message could be actived")
+      firstName.parentNode.setAttribute("data-error-visible", "true");
    }
 }
+
 //______________________________________________
 //FONCTION CHECK NOM____________________________
 const checkInputLastName = () => {
    if (lastName.value.length > 2) {
       state.lastName.data = lastName.value;
       state.lastName.status = true;
-      
+      lastName.parentNode.setAttribute("data-error-visible", "false");
    } else {
       state.lastName.data = lastName.value;
       state.lastName.status = false;
+      lastName.parentNode.setAttribute("data-error-visible", "true");
    }
 }
+
 //______________________________________________
 //FONCTION CHECK E-MAIL_________________________
 const checkInputEmail = () => {
    if (email.value.match(/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i)) {
       state.email.data = email.value;
       state.email.status = true;
+      email.parentNode.setAttribute("data-error-visible", "false");
    } else {
       state.email.data = email.value;
       state.email.status = false;
+      email.parentNode.setAttribute("data-error-visible", "true");
    }
 }
+
 //_______________________________________________
 //FONCTION CHECK DATE DE NAISSANCE_______________
 const checkInputDate = () => {
    if (date.value == '') {
       state.date.data = date.value;
       state.date.status = false;
+      date.parentNode.setAttribute("data-error-visible", "true");
    } else {
       state.date.data = creatDate();
       state.date.status = true;
+      date.parentNode.setAttribute("data-error-visible", "false");
    }
 }
+
 //_______________________________________________
 //FONCTION CHECK PARTICIPATION TOURNOIS__________
 const checkInputContest = () => {
@@ -156,6 +164,7 @@ const checkInputContest = () => {
       state.contest.status = true;
    }
 }
+
 //_______________________________________________
 // FONCTION CHECK VILLE__________________________
 
@@ -202,6 +211,10 @@ const checkInputCgu = () => {
       state.cgu.status = false;
    }
 }
+
+
+//_______________________________________________
+//FONCTION ERROR_________________________________
 //_______________________________________________
 //FONCTION CHECK STATUS FORMULAIRE_______________
 const checkStatus = () => {
@@ -212,6 +225,8 @@ const checkStatus = () => {
 // launch modal form
 const launchModal = () => {
    modalbg.style.display = "block";
+   // error.setAttribute("data-error-visible", "false");
+   // error.setAttribute("disabled", "");
 }
 
 // Close modal form 'X Button'
@@ -220,9 +235,9 @@ const closeModal = () => {
 }
 
 // Display error message
-const displayError = () => {
-error.style.display = "block";
-}
+// const displayError = () => {
+// error.style.display = "block";
+// }
 
 // // ========================
 // //       DÉCLENCHEUR    LECTURE DES DECLARATIONS
@@ -240,10 +255,17 @@ cross.addEventListener("click", closeModal);
 //    Btn.addEventListener('click', displayError)
 // })
 
+
+//???????????????????????????????????????????????
 // submit form event
 submitBtn.addEventListener('click', (event) => {
    //STOP FOR CHECK
    event.preventDefault();
+   if(state == true) {
+      //send form
+   } else {
+      //show the errors || do nothing ?
+   }
    
    //PRENOM
    checkInputFirstName();
