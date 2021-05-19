@@ -170,6 +170,9 @@ const checkInputContest = () => {
 
 //_______________________________________________
 // FONCTION CHECK VILLE__________________________
+//?POSSIBILITEE DE CHOISIR PLUSIEURS VILLES?//
+
+
 
 /*switch (checkInputCity) {
    
@@ -195,6 +198,8 @@ const checkInputContest = () => {
          state.city.status = false;
 }*/
 
+
+
 const checkInputCity = () => {
 
    if (radio1.checked || radio2.checked || radio3.checked || radio4.checked || radio5.checked || radio6.checked == true) {
@@ -210,10 +215,10 @@ const checkInputCgu = () => {
 
    if (checkBox.checked == true) {
       state.cgu.status = true;
-      checkBox.parentNode.setAttribute("data-error-visible", "true");
+      checkBox.parentNode.setAttribute("data-error-visible", "false");
    } else {
       state.cgu.status = false;
-      checkBox.parentNode.setAttribute("data-error-visible", "false");
+      checkBox.parentNode.setAttribute("data-error-visible", "true");
    }
 }
 
@@ -230,6 +235,7 @@ const checkInputCgu = () => {
 //       console.log('if true')
 //    }
 // }
+
 //_______________________________________________
 //FONCTION CHECK STATUS FORMULAIRE_______________
 const checkStatus = () => {
