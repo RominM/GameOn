@@ -16,17 +16,16 @@ const date = document.querySelector('#birthdate'); //<input> Date
 const contest = document.querySelector('#quantity'); //<input> Champs de reponse "Combien"
 const submitBtn = document.querySelector('#submit'); //Boutton "c'est partie"
 
-var radio1 = document.querySelector('#location1');//New York
-var radio2 = document.querySelector('#location2');//San Fransico
-var radio3 = document.querySelector('#location3');//Seattle
-var radio4 = document.querySelector('#location4');//Chicago
-var radio5 = document.querySelector('#location5');//Boston
-var radio6 = document.querySelector('#location6');//Portland
+var radio1 = document.querySelector('#location1'); //New York
+var radio2 = document.querySelector('#location2'); //San Fransico
+var radio3 = document.querySelector('#location3'); //Seattle
+var radio4 = document.querySelector('#location4'); //Chicago
+var radio5 = document.querySelector('#location5'); //Boston
+var radio6 = document.querySelector('#location6'); //Portland
 
-var checkBox = document.querySelector("#checkbox1");//CGU
+var checkBox = document.querySelector("#checkbox1"); //CGU
 
-//ERROR
-var error = document.querySelector('.formData[data-error-visible="false"]');
+//error
 
 // 
 //DATE*************************************************************************************************************************
@@ -104,10 +103,12 @@ const checkInputFirstName = () => {
       state.firstName.data = firstName.value;
       state.firstName.status = true;
       firstName.parentNode.setAttribute("data-error-visible", "false");
+      // errorMessage(firstName.parentNode);
    } else {
       state.firstName.data = firstName.value;
       state.firstName.status = false;
       firstName.parentNode.setAttribute("data-error-visible", "true");
+      // errorMessage(firstName.parentNode);
    }
 }
 
@@ -159,16 +160,18 @@ const checkInputContest = () => {
    if (contest.value == '') {
       state.contest.data = contest.value;
       state.contest.status = false;
+      contest.parentNode.setAttribute("data-error-visible", "true");
    } else {
       state.contest.data = contest.value;
       state.contest.status = true;
+      contest.parentNode.setAttribute("data-error-visible", "false");
    }
 }
 
 //_______________________________________________
 // FONCTION CHECK VILLE__________________________
 
-   /*switch (checkInputCity) {
+/*switch (checkInputCity) {
    
       case radio1.checked == true: 
          state.city.status = true;
@@ -195,9 +198,9 @@ const checkInputContest = () => {
 const checkInputCity = () => {
 
    if (radio1.checked || radio2.checked || radio3.checked || radio4.checked || radio5.checked || radio6.checked == true) {
-      state.cgu.status = true;
+      state.city.status = true;
    } else {
-      state.cgu.status = false;
+      state.city.status = false;
    }
 }
 
@@ -207,14 +210,26 @@ const checkInputCgu = () => {
 
    if (checkBox.checked == true) {
       state.cgu.status = true;
+      checkBox.parentNode.setAttribute("data-error-visible", "true");
    } else {
       state.cgu.status = false;
+      checkBox.parentNode.setAttribute("data-error-visible", "false");
    }
 }
 
 
 //_______________________________________________
 //FONCTION ERROR_________________________________
+// function errorMessage(parentNode) {
+
+//    if (parentNode.getAttribute("data-error-visible", "false")) {
+//       parentNode.setAttribute("data-error-visible", "true");
+//       console.log('if false')
+//    } else if (parentNode.getAttribute("data-error-visible", "true")) {
+//       parentNode.setAttribute("data-error-visible", "false");
+//       console.log('if true')
+//    }
+// }
 //_______________________________________________
 //FONCTION CHECK STATUS FORMULAIRE_______________
 const checkStatus = () => {
@@ -261,12 +276,12 @@ cross.addEventListener("click", closeModal);
 submitBtn.addEventListener('click', (event) => {
    //STOP FOR CHECK
    event.preventDefault();
-   if(state == true) {
+   if (state == true) {
       //send form
    } else {
       //show the errors || do nothing ?
    }
-   
+
    //PRENOM
    checkInputFirstName();
    //NOM
