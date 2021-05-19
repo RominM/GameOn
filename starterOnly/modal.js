@@ -96,20 +96,27 @@ const editNav = () => {
    }
 }
 
+//_______________________________________________
+//FONCTION ERROR_________________________________
+// const displayError = (span, etat) => {
+//    span.parentNode.setAttribute("data-error-visible", etat);
+// }
 //______________________________________________
 //FONCTION CHECK PRENOM_________________________
 const checkInputFirstName = () => {
    if (firstName.value.length > 2) {
+      console.log(firstName);
       state.firstName.data = firstName.value;
       state.firstName.status = true;
       firstName.parentNode.setAttribute("data-error-visible", "false");
-      // errorMessage(firstName.parentNode);
+      firstName.parentNode.classList.remove('toto');
    } else {
       state.firstName.data = firstName.value;
       state.firstName.status = false;
       firstName.parentNode.setAttribute("data-error-visible", "true");
-      // errorMessage(firstName.parentNode);
+      firstName.parentNode.classList.add('toto');
    }
+   console.log(firstName.parentNode);
 }
 
 //______________________________________________
@@ -118,11 +125,11 @@ const checkInputLastName = () => {
    if (lastName.value.length > 2) {
       state.lastName.data = lastName.value;
       state.lastName.status = true;
-      lastName.parentNode.setAttribute("data-error-visible", "false");
+      // displayError(lastName, false);
    } else {
       state.lastName.data = lastName.value;
       state.lastName.status = false;
-      lastName.parentNode.setAttribute("data-error-visible", "true");
+      // displayError(lastName, true);
    }
 }
 
@@ -132,11 +139,11 @@ const checkInputEmail = () => {
    if (email.value.match(/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i)) {
       state.email.data = email.value;
       state.email.status = true;
-      email.parentNode.setAttribute("data-error-visible", "false");
+      // displayError(email, false);
    } else {
       state.email.data = email.value;
       state.email.status = false;
-      email.parentNode.setAttribute("data-error-visible", "true");
+      // displayError(email, true);
    }
 }
 
@@ -146,7 +153,7 @@ const checkInputDate = () => {
    if (date.value == '') {
       state.date.data = date.value;
       state.date.status = false;
-      date.parentNode.setAttribute("data-error-visible", "true");
+      // displayError(firstName, false);
    } else {
       state.date.data = creatDate();
       state.date.status = true;
@@ -157,16 +164,28 @@ const checkInputDate = () => {
 //_______________________________________________
 //FONCTION CHECK PARTICIPATION TOURNOIS__________
 const checkInputContest = () => {
-   if (contest.value == '') {
+
+   if (Number.parseInt(contest.value) > 0 && isNaN(contest.value)) {
       state.contest.data = contest.value;
       state.contest.status = false;
-      contest.parentNode.setAttribute("data-error-visible", "true");
+      displayError(firstName, true);
    } else {
       state.contest.data = contest.value;
       state.contest.status = true;
       contest.parentNode.setAttribute("data-error-visible", "false");
    }
 }
+
+//    if (contest.value == '') {
+//       state.contest.data = contest.value;
+//       state.contest.status = false;
+//       DisplayError(firstName, true);
+//    } else {
+//       state.contest.data = contest.value;
+//       state.contest.status = true;
+//       contest.parentNode.setAttribute("data-error-visible", "false");
+//    }
+
 
 //_______________________________________________
 // FONCTION CHECK VILLE__________________________
@@ -204,6 +223,7 @@ const checkInputCity = () => {
 
    if (radio1.checked || radio2.checked || radio3.checked || radio4.checked || radio5.checked || radio6.checked == true) {
       state.city.status = true;
+      displayError(city, false);
    } else {
       state.city.status = false;
    }
@@ -223,18 +243,6 @@ const checkInputCgu = () => {
 }
 
 
-//_______________________________________________
-//FONCTION ERROR_________________________________
-// function errorMessage(parentNode) {
-
-//    if (parentNode.getAttribute("data-error-visible", "false")) {
-//       parentNode.setAttribute("data-error-visible", "true");
-//       console.log('if false')
-//    } else if (parentNode.getAttribute("data-error-visible", "true")) {
-//       parentNode.setAttribute("data-error-visible", "false");
-//       console.log('if true')
-//    }
-// }
 
 //_______________________________________________
 //FONCTION CHECK STATUS FORMULAIRE_______________
@@ -255,13 +263,9 @@ const closeModal = () => {
    modalbg.style.display = "none";
 }
 
-// Display error message
-// const displayError = () => {
-// error.style.display = "block";
-// }
 
 // // ========================
-// //       DÉCLENCHEUR    LECTURE DES DECLARATIONS
+// //       DÉCLENCHEUR
 // // ========================
 
 // // launch modal event
@@ -271,23 +275,11 @@ modalBtn.forEach((Btn) => {
 // close modal event
 cross.addEventListener("click", closeModal);
 
-// //Message d'erreur
-// error.forEach((Btn) => {
-//    Btn.addEventListener('click', displayError)
-// })
-
-
-//???????????????????????????????????????????????
 // submit form event
 submitBtn.addEventListener('click', (event) => {
    //STOP FOR CHECK
    event.preventDefault();
-   if (state == true) {
-      //send form
-   } else {
-      //show the errors || do nothing ?
-   }
-
+   
    //PRENOM
    checkInputFirstName();
    //NOM
@@ -304,4 +296,10 @@ submitBtn.addEventListener('click', (event) => {
    checkInputCgu();
    //CHECK STATUS
    checkStatus(state);
+
 })
+
+// const globalCheck = () => {
+//    //BOUCLE FOR (PAS DE FOREACH)
+// }
+

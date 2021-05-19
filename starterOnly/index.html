@@ -60,9 +60,9 @@
                     <form id='subscribe' name="reserve" action="index.html" method="get">
 
                         <!-- PRENOM -->
-                        <div class="formData" data-error="Veuillez saisir un Prénom (minimum 2 lettres)" data-error-visible="">
+                        <div class="formData" data-error="Veuillez saisir un Prénom (minimum 2 lettres)" data-error-visible="false">
                             <label for="first">Prénom</label><br>
-                            <input class="text-control" type="text" id="first" name="first" minlength="2" data-error="ERROR"/><br>
+                            <input class="text-control" type="text" id="first" name="first" data-error="ERROR"/><br>
                         </div>
 
 
@@ -70,21 +70,18 @@
                         <div class="formData" data-error="Veuillez saisir un Nom (minimum 2 lettres)" data-error-visible="false">
                             <label>Nom</label><br>
                             <input class="text-control" type="text" id="last" name="last" data-error="ERROR"/><br>
-                            <p class="error_lastname"></p>
                         </div>
 
                         <!-- EMAIL -->
                         <div class="formData" data-error="Veuillez saisir une adresse E-mail" data-error-visible="false">
                             <label>E-mail</label><br>
                             <input class="text-control" type="email" id="email" name="email" data-error="ERROR"/><br>
-                            <p class="error"></p>
                         </div>
 
                         <!-- BIRTHDATE -->
                         <div class="formData" data-error="Veuillez saisir une date (format JJ/MM/AAAA)" data-error-visible="false">
                             <label>Date de naissance</label><br>
                             <input class="text-control" type="date" id="birthdate" name="birthdate" /><br>
-                            <p class="error"></p>
                         </div>
 
                         <!-- HOW MANY -->
