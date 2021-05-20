@@ -1,3 +1,29 @@
 CREER UNE BRANCH 'Online'
 
 git checkout -b Online
+
+1. Avancées de l’étudiant sur son projet depuis la dernière session
+
+Romin a réussi a passer le cap ! Il comprends bien mieux le JS et sa se ressens lors des sessions de mentorat. Le déclic à eu lieu
+
+
+2. Principaux sujets abordés pendant la session, obstacles à surmonter (le cas échéant), et actions nécessaires pour atteindre ces objectifs
+
+conditions
+parseInt
+NaN
+analyse du code
+idée de refactorisation
+ 
+
+
+
+
+3. Objectifs 'SMART' fixés par l'étudiant et le mentor pour la prochaine session
+
+validation page à la validation du form
+media query CSS
+//github page
+cleaner le code
+récupérer le noms de la ville dans le state
+BONUS : check "à la volée" ;)

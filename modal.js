@@ -13,7 +13,9 @@ const firstName = document.querySelector('#first'); //<input> prenom
 const lastName = document.querySelector('#last'); //<input> nom
 const email = document.querySelector('#email'); //<input> email
 const date = document.querySelector('#birthdate'); //<input> Date
-const contest = document.querySelector('#quantity'); //<input> Champs de reponse "Combien"
+const contest = document.querySelector('#quantity'); //<input> Champs de reponse "Combien ?"
+const city = document.querySelector('#city'); //<div> villes
+const checkBox = document.querySelector("#checkbox1"); //CGU
 const submitBtn = document.querySelector('#submit'); //Boutton "c'est partie"
 
 var radio1 = document.querySelector('#location1'); //New York
@@ -23,9 +25,6 @@ var radio4 = document.querySelector('#location4'); //Chicago
 var radio5 = document.querySelector('#location5'); //Boston
 var radio6 = document.querySelector('#location6'); //Portland
 
-var checkBox = document.querySelector("#checkbox1"); //CGU
-
-//error
 
 // 
 //DATE*************************************************************************************************************************
@@ -74,6 +73,7 @@ var state = {
       status: false
    },
    city: {
+      name: '',
       status: false
    },
    cgu: {
@@ -98,25 +98,26 @@ const editNav = () => {
 
 //_______________________________________________
 //FONCTION ERROR_________________________________
-// const displayError = (span, etat) => {
-//    span.parentNode.setAttribute("data-error-visible", etat);
+// const displayError = (name, etat) => {
+//    state.name.data = name.value;
+//    state.name.status;
+//    name.parentNode.setAttribute("data-error-visible", etat);
 // }
+
 //______________________________________________
 //FONCTION CHECK PRENOM_________________________
 const checkInputFirstName = () => {
    if (firstName.value.length > 2) {
-      console.log(firstName);
       state.firstName.data = firstName.value;
       state.firstName.status = true;
       firstName.parentNode.setAttribute("data-error-visible", "false");
-      firstName.parentNode.classList.remove('toto');
+      // displayError(firstName, false);
    } else {
       state.firstName.data = firstName.value;
       state.firstName.status = false;
       firstName.parentNode.setAttribute("data-error-visible", "true");
-      firstName.parentNode.classList.add('toto');
+      // displayError(firstName, true);
    }
-   console.log(firstName.parentNode);
 }
 
 //______________________________________________
@@ -125,10 +126,12 @@ const checkInputLastName = () => {
    if (lastName.value.length > 2) {
       state.lastName.data = lastName.value;
       state.lastName.status = true;
+      lastName.parentNode.setAttribute("data-error-visible", "false");
       // displayError(lastName, false);
    } else {
       state.lastName.data = lastName.value;
       state.lastName.status = false;
+      lastName.parentNode.setAttribute("data-error-visible", "true");
       // displayError(lastName, true);
    }
 }
@@ -139,10 +142,12 @@ const checkInputEmail = () => {
    if (email.value.match(/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i)) {
       state.email.data = email.value;
       state.email.status = true;
+      email.parentNode.setAttribute("data-error-visible", "false");
       // displayError(email, false);
    } else {
       state.email.data = email.value;
       state.email.status = false;
+      email.parentNode.setAttribute("data-error-visible", "true");
       // displayError(email, true);
    }
 }
@@ -153,6 +158,7 @@ const checkInputDate = () => {
    if (date.value == '') {
       state.date.data = date.value;
       state.date.status = false;
+      date.parentNode.setAttribute("data-error-visible", "true");
       // displayError(firstName, false);
    } else {
       state.date.data = creatDate();
@@ -164,11 +170,11 @@ const checkInputDate = () => {
 //_______________________________________________
 //FONCTION CHECK PARTICIPATION TOURNOIS__________
 const checkInputContest = () => {
-
-   if (Number.parseInt(contest.value) > 0 && isNaN(contest.value)) {
+   
+   if /*(Number.parseInt(contest.value) > 0 && isNaN(contest.value) &&*/(contest.value == '') {
       state.contest.data = contest.value;
       state.contest.status = false;
-      displayError(firstName, true);
+      contest.parentNode.setAttribute("data-error-visible", "true");
    } else {
       state.contest.data = contest.value;
       state.contest.status = true;
@@ -176,57 +182,53 @@ const checkInputContest = () => {
    }
 }
 
-//    if (contest.value == '') {
-//       state.contest.data = contest.value;
-//       state.contest.status = false;
-//       DisplayError(firstName, true);
-//    } else {
-//       state.contest.data = contest.value;
-//       state.contest.status = true;
-//       contest.parentNode.setAttribute("data-error-visible", "false");
-//    }
-
-
 //_______________________________________________
 // FONCTION CHECK VILLE__________________________
-//?POSSIBILITEE DE CHOISIR PLUSIEURS VILLES?//
-
-
-
-/*switch (checkInputCity) {
-   
-      case radio1.checked == true: 
-         state.city.status = true;
-         break;
-      case radio2.checked == true:
-         state.city.status = true;
-         break;
-      case radio3.checked == true:
-         state.city.status = true;
-         break;
-      case radio4.checked == true:
-         state.city.status = true;
-         break;
-      case radio5.checked == true:
-         state.city.status = true;
-         break;
-      case radio6.checked == true:
-         state.city.status = true;
-         break;
-      default:
-         state.city.status = false;
-}*/
-
-
-
 const checkInputCity = () => {
 
-   if (radio1.checked || radio2.checked || radio3.checked || radio4.checked || radio5.checked || radio6.checked == true) {
-      state.city.status = true;
-      displayError(city, false);
-   } else {
-      state.city.status = false;
+   let radioBtn = document.querySelector('input[name=location]:checked');
+   if (radioBtn.checked) {
+      console.log(radioBtn.value);
+      switch (radioBtn.value) {
+      case "New York":
+         console.log(radioBtn.value);
+         state.city.status = true;
+         state.city.name = radioBtn.value;
+         city.setAttribute("data-error-visible", "false");
+         break;
+      case "San Francisco":
+         state.city.status = true;
+         state.city.name = radioBtn.value;
+         city.setAttribute("data-error-visible", "false");
+         break;
+      case "Seattle":
+         state.city.status = true;
+         state.city.name = radioBtn.value;
+         city.setAttribute("data-error-visible", "false");
+         break;
+      case "Chicago":
+         state.city.status = true;
+         state.city.name = radioBtn.value;
+         city.setAttribute("data-error-visible", "false");
+         break;
+      case "Boston":
+         state.city.status = true;
+         state.city.name = radioBtn.value;
+         city.setAttribute("data-error-visible", "false");
+         break;
+      case "Portland":
+         state.city.status = true;
+         state.city.name = radioBtn.value;
+         city.setAttribute("data-error-visible", "false");
+         break;
+      default:
+         break;
    }
+} else {
+   state.city.status = false;
+         city.setAttribute("data-error-visible", "true");
+         console.log('c\'est default')
+}
 }
 
 //_______________________________________________
@@ -280,6 +282,8 @@ submitBtn.addEventListener('click', (event) => {
    //STOP FOR CHECK
    event.preventDefault();
    
+   //ERROR
+   // displayError();
    //PRENOM
    checkInputFirstName();
    //NOM
