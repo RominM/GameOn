@@ -98,11 +98,11 @@ const editNav = () => {
 
 //_______________________________________________
 //FONCTION ERROR_________________________________
-// const displayError = (name, etat) => {
-//    state.name.data = name.value;
-//    state.name.status;
-//    name.parentNode.setAttribute("data-error-visible", etat);
-// }
+const displayError = (name, etat) => {
+   state.name.data = name.value;
+   state.name.status;
+   name.parentNode.setAttribute("data-error-visible", etat);
+}
 
 //______________________________________________
 //FONCTION CHECK PRENOM_________________________
@@ -187,7 +187,7 @@ const checkInputContest = () => {
 const checkInputCity = () => {
 
    let radioBtn = document.querySelector('input[name=location]:checked');
-   if (radioBtn.checked) {
+   if (radioBtn != null && radioBtn.checked) {
       console.log(radioBtn.value);
       switch (radioBtn.value) {
       case "New York":
@@ -227,7 +227,7 @@ const checkInputCity = () => {
 } else {
    state.city.status = false;
          city.setAttribute("data-error-visible", "true");
-         console.log('c\'est default')
+         console.log('No cities are checked')
 }
 }
 
