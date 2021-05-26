@@ -5,6 +5,7 @@
 //GLOBAL ELEMENTS
 const modalbg = document.querySelector(".bground"); //bg formulaire
 const modalBtn = document.querySelectorAll(".modal-btn"); //Bouton "je m'inscris"
+const validPage = document.querySelector(".bground2");
 
 //FORM ELEMENTS
 const formData = document.querySelectorAll(".formData"); //<div> du formulaire qui contient les <input>
@@ -25,8 +26,6 @@ var radio4 = document.querySelector('#location4'); //Chicago
 var radio5 = document.querySelector('#location5'); //Boston
 var radio6 = document.querySelector('#location6'); //Portland
 
-
-// 
 //DATE*************************************************************************************************************************
 const creatDate = () => {
    let inputDate = date.value;
@@ -111,12 +110,10 @@ const checkInputFirstName = () => {
       state.firstName.data = firstName.value;
       state.firstName.status = true;
       firstName.parentNode.setAttribute("data-error-visible", "false");
-      // displayError(firstName, false);
    } else {
       state.firstName.data = firstName.value;
       state.firstName.status = false;
       firstName.parentNode.setAttribute("data-error-visible", "true");
-      // displayError(firstName, true);
    }
 }
 
@@ -127,12 +124,10 @@ const checkInputLastName = () => {
       state.lastName.data = lastName.value;
       state.lastName.status = true;
       lastName.parentNode.setAttribute("data-error-visible", "false");
-      // displayError(lastName, false);
    } else {
       state.lastName.data = lastName.value;
       state.lastName.status = false;
       lastName.parentNode.setAttribute("data-error-visible", "true");
-      // displayError(lastName, true);
    }
 }
 
@@ -143,12 +138,10 @@ const checkInputEmail = () => {
       state.email.data = email.value;
       state.email.status = true;
       email.parentNode.setAttribute("data-error-visible", "false");
-      // displayError(email, false);
    } else {
       state.email.data = email.value;
       state.email.status = false;
       email.parentNode.setAttribute("data-error-visible", "true");
-      // displayError(email, true);
    }
 }
 
@@ -159,7 +152,6 @@ const checkInputDate = () => {
       state.date.data = date.value;
       state.date.status = false;
       date.parentNode.setAttribute("data-error-visible", "true");
-      // displayError(firstName, false);
    } else {
       state.date.data = creatDate();
       state.date.status = true;
@@ -170,8 +162,8 @@ const checkInputDate = () => {
 //_______________________________________________
 //FONCTION CHECK PARTICIPATION TOURNOIS__________
 const checkInputContest = () => {
-   
-   if /*(Number.parseInt(contest.value) > 0 && isNaN(contest.value) &&*/(contest.value == '') {
+
+   if (contest.value == '') {
       state.contest.data = contest.value;
       state.contest.status = false;
       contest.parentNode.setAttribute("data-error-visible", "true");
@@ -190,45 +182,44 @@ const checkInputCity = () => {
    if (radioBtn != null && radioBtn.checked) {
       console.log(radioBtn.value);
       switch (radioBtn.value) {
-      case "New York":
-         console.log(radioBtn.value);
-         state.city.status = true;
-         state.city.name = radioBtn.value;
-         city.setAttribute("data-error-visible", "false");
-         break;
-      case "San Francisco":
-         state.city.status = true;
-         state.city.name = radioBtn.value;
-         city.setAttribute("data-error-visible", "false");
-         break;
-      case "Seattle":
-         state.city.status = true;
-         state.city.name = radioBtn.value;
-         city.setAttribute("data-error-visible", "false");
-         break;
-      case "Chicago":
-         state.city.status = true;
-         state.city.name = radioBtn.value;
-         city.setAttribute("data-error-visible", "false");
-         break;
-      case "Boston":
-         state.city.status = true;
-         state.city.name = radioBtn.value;
-         city.setAttribute("data-error-visible", "false");
-         break;
-      case "Portland":
-         state.city.status = true;
-         state.city.name = radioBtn.value;
-         city.setAttribute("data-error-visible", "false");
-         break;
-      default:
-         break;
+         case "New York":
+            console.log(radioBtn.value);
+            state.city.status = true;
+            state.city.name = radioBtn.value;
+            city.setAttribute("data-error-visible", "false");
+            break;
+         case "San Francisco":
+            state.city.status = true;
+            state.city.name = radioBtn.value;
+            city.setAttribute("data-error-visible", "false");
+            break;
+         case "Seattle":
+            state.city.status = true;
+            state.city.name = radioBtn.value;
+            city.setAttribute("data-error-visible", "false");
+            break;
+         case "Chicago":
+            state.city.status = true;
+            state.city.name = radioBtn.value;
+            city.setAttribute("data-error-visible", "false");
+            break;
+         case "Boston":
+            state.city.status = true;
+            state.city.name = radioBtn.value;
+            city.setAttribute("data-error-visible", "false");
+            break;
+         case "Portland":
+            state.city.status = true;
+            state.city.name = radioBtn.value;
+            city.setAttribute("data-error-visible", "false");
+            break;
+         default:
+            break;
+      }
+   } else {
+      state.city.status = false;
+      city.setAttribute("data-error-visible", "true");
    }
-} else {
-   state.city.status = false;
-         city.setAttribute("data-error-visible", "true");
-         console.log('No cities are checked')
-}
 }
 
 //_______________________________________________
@@ -249,22 +240,24 @@ const checkInputCgu = () => {
 //_______________________________________________
 //FONCTION CHECK STATUS FORMULAIRE_______________
 const checkStatus = () => {
-   //semaine pro ;)
    console.log(state);
 }
 
 // launch modal form
 const launchModal = () => {
    modalbg.style.display = "block";
-   // error.setAttribute("data-error-visible", "false");
-   // error.setAttribute("disabled", "");
+}
+
+
+// launch modal form
+const launchValid = () => {
+   validPage.style.display = "block";
 }
 
 // Close modal form 'X Button'
 const closeModal = () => {
    modalbg.style.display = "none";
 }
-
 
 // // ========================
 // //       DÉCLENCHEUR
@@ -281,9 +274,6 @@ cross.addEventListener("click", closeModal);
 submitBtn.addEventListener('click', (event) => {
    //STOP FOR CHECK
    event.preventDefault();
-   
-   //ERROR
-   // displayError();
    //PRENOM
    checkInputFirstName();
    //NOM
@@ -300,10 +290,28 @@ submitBtn.addEventListener('click', (event) => {
    checkInputCgu();
    //CHECK STATUS
    checkStatus(state);
+   //VALIDATION
+   globalCheck();
 
 })
 
-// const globalCheck = () => {
-//    //BOUCLE FOR (PAS DE FOREACH)
-// }
+const globalCheck = () => {
+   var estValide = false;
 
+   for (let object in state) {
+
+      let status = state[object]['status'];
+      if (status == false) {
+         estValide = false;
+         break;
+      } else {
+         estValide = true;
+      }
+   }
+
+   if (estValide == true) {
+      closeModal();
+      launchValid();
+   }
+   return estValide;
+}
