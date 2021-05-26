@@ -17,6 +17,7 @@ const date = document.querySelector('#birthdate'); //<input> Date
 const contest = document.querySelector('#quantity'); //<input> Champs de reponse "Combien ?"
 const city = document.querySelector('#city'); //<div> villes
 const checkBox = document.querySelector("#checkbox1"); //CGU
+const checkBox2 = document.querySelector("#checkbox2") //Option Newsletter
 const submitBtn = document.querySelector('#submit'); //Boutton "c'est partie"
 
 var radio1 = document.querySelector('#location1'); //New York
@@ -44,7 +45,6 @@ const creatDate = () => {
    const day = inputDate[2];
    const months = ['janvier', 'fevrier', 'mars', 'avril', 'mai', 'juin', 'juillet', 'aout', 'septembre', 'octobre', 'novembre', 'decembre'];
    const cleanDate = day + ' ' + (months[nmbMois - 1]) + ' ' + year;
-   console.log(cleanDate);
    return cleanDate;
 }
 //DATE*************************************************************************************************************************
@@ -77,6 +77,9 @@ var state = {
    },
    cgu: {
       status: false
+   },
+   newsletter: {
+      status: false
    }
 }
 
@@ -101,10 +104,10 @@ const editNav = () => {
 //    let name = input.name;//recupere le name dans l'input de l'html
 //    let data = state[name]['data'];//recupere la data de l'objet state de l'input referent
 //    let status = state[name]['status'];//recupere le status de l'objet state de l'input referent
-   
+
 //    data = input.value;//state.firstName.data = firstName.value;
 //    status  = !etat;//state.firstName.status = true; (le "!" inverse l'etat du parametre)
-   
+
 //    input.parentNode.setAttribute("data-error-visible", etat);// firstName.parentNode.setAttribute("data-error-visible", "false");
 // }
 
@@ -123,6 +126,7 @@ const checkInputFirstName = () => {
       // displayError(firstName, true);
    }
 }
+firstName.addEventListener('input', checkInputFirstName);
 
 //______________________________________________
 //FONCTION CHECK NOM____________________________
@@ -139,6 +143,7 @@ const checkInputLastName = () => {
       // displayError(lastName, true);
    }
 }
+lastName.addEventListener('input', checkInputLastName);
 
 //______________________________________________
 //FONCTION CHECK E-MAIL_________________________
@@ -155,13 +160,14 @@ const checkInputEmail = () => {
       // displayError(email, true);
    }
 }
+email.addEventListener('input', checkInputEmail);
 
 //_______________________________________________
 //FONCTION CHECK DATE DE NAISSANCE_______________
 const checkInputDate = () => {
    if (date.value == '') {
       state.date.data = date.value;
-//       // state.date.status = false;
+      //       // state.date.status = false;
       date.parentNode.setAttribute("data-error-visible", "true");
       // displayError(date, false);
    } else {
@@ -176,7 +182,7 @@ const checkInputDate = () => {
 //FONCTION CHECK PARTICIPATION TOURNOIS__________
 const checkInputContest = () => {
 
-   if (contest.value == '') {
+   if (contest.value == '' || contest.value <= 0 || contest.value > 99) {
       state.contest.data = contest.value;
       state.contest.status = false;
       contest.parentNode.setAttribute("data-error-visible", "true");
@@ -188,6 +194,7 @@ const checkInputContest = () => {
       // displayError(contest, true);
    }
 }
+contest.addEventListener('input', checkInputContest);
 
 //_______________________________________________
 // FONCTION CHECK VILLE__________________________
@@ -195,12 +202,11 @@ const checkInputCity = () => {
 
    let radioBtn = document.querySelector('input[name=location]:checked');
    if (radioBtn != null && radioBtn.checked) {
-      console.log(radioBtn.value);
+      // console.log(radioBtn.value);
       switch (radioBtn.value) {
          case "New York":
-            console.log(city.value);
             state.city.status = true;
-            state.city.name = radioBtn.value;
+            state.city.data = radioBtn.value;
             city.setAttribute("data-error-visible", "false");
             // displayError(city.value, false);
             break;
@@ -264,6 +270,17 @@ const checkInputCgu = () => {
 }
 
 //_______________________________________________
+//FONCTION CHECK NEWSLETTRE______________________
+const checkNewsLetter = () => {
+
+   if (checkBox2.checked) {
+      state.newsletter.status = true;
+   } else {
+      state.newsletter.status = false;
+   }
+}
+
+//_______________________________________________
 //FONCTION CHECK STATUS FORMULAIRE_______________
 const checkStatus = () => {
    console.log(state);
@@ -283,6 +300,28 @@ const launchValid = () => {
 // Close modal form 'X Button'
 const closeModal = () => {
    modalbg.style.display = "none";
+}
+
+const globalCheck = () => {
+   var estValide = false;
+
+   for (let object in state) {
+      if (object !== 'newsletter') {
+         let status = state[object]['status'];
+         if (status == false) {
+            estValide = false;
+            break;
+         } else {
+            estValide = true;
+         }
+      }
+   }
+
+   if (estValide == true) {
+      closeModal();
+      launchValid();
+   }
+   return estValide;
 }
 
 // // ========================
@@ -314,30 +353,11 @@ submitBtn.addEventListener('click', (event) => {
    checkInputCity();
    //CGU
    checkInputCgu();
+   //NEWSLETTRE
+   checkNewsLetter();
    //CHECK STATUS
    checkStatus(state);
    //VALIDATION
    globalCheck();
 
 })
-
-const globalCheck = () => {
-   var estValide = false;
-
-   for (let object in state) {
-
-      let status = state[object]['status'];
-      if (status == false) {
-         estValide = false;
-         break;
-      } else {
-         estValide = true;
-      }
-   }
-
-   if (estValide == true) {
-      closeModal();
-      launchValid();
-   }
-   return estValide;
-}
