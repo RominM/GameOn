@@ -64,7 +64,7 @@
                         <div class="formData" data-error="Veuillez saisir un Prénom (minimum 2 lettres)"
                             data-error-visible="false">
                             <label for="first">Prénom</label><br>
-                            <input class="text-control" type="text" id="first" name="first" data-error="ERROR" /><br>
+                            <input class="text-control" type="text" id="first" name="firstName" data-error="ERROR" /><br>
                         </div>
 
 
@@ -72,7 +72,7 @@
                         <div class="formData" data-error="Veuillez saisir un Nom (minimum 2 lettres)"
                             data-error-visible="false">
                             <label>Nom</label><br>
-                            <input class="text-control" type="text" id="last" name="last" data-error="ERROR" /><br>
+                            <input class="text-control" type="text" id="last" name="lastName" data-error="ERROR" /><br>
                         </div>
 
                         <!-- EMAIL -->
@@ -86,14 +86,14 @@
                         <div class="formData" data-error="Veuillez saisir une date (format JJ/MM/AAAA)"
                             data-error-visible="false">
                             <label>Date de naissance</label><br>
-                            <input class="text-control" type="date" id="birthdate" name="birthdate" /><br>
+                            <input class="text-control" type="date" id="birthdate" name="date" /><br>
                         </div>
 
                         <!-- HOW MANY -->
                         <div class="formData" data-error="Veuillez saisir un chiffre (entre 0 et 99)"
                             data-error-visible="false">
                             <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                            <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                            <input type="number" class="text-control" id="quantity" name="contest" min="0" max="99">
                         </div>
 
                         <!-- CITY -->
@@ -101,7 +101,7 @@
 
                         <!-- FORM DATA -->
                         <div class="formData" data-error="Veuillez selectionner une ville" data-error-visible="false"
-                            id="city">
+                            id="city" name="city">
 
                             <!-- IN1 -->
                             <input class="checkbox-input" type="radio" id="location1" name="location"
@@ -145,7 +145,7 @@
                         </div>
 
                         <div class="formData" data-error="Veuillez confirmer les conditions d'utilisation"
-                            data-error-visible="false">
+                            data-error-visible="false" name="cgu">
 
                             <!-- OBLIGATE CONDITIONS -->
                             <input class="checkbox-input" type="checkbox" id="checkbox1" checked />

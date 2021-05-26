@@ -72,7 +72,7 @@ var state = {
       status: false
    },
    city: {
-      name: '',
+      data: '',
       status: false
    },
    cgu: {
@@ -97,23 +97,30 @@ const editNav = () => {
 
 //_______________________________________________
 //FONCTION ERROR_________________________________
-const displayError = (name, etat) => {
-   state.name.data = name.value;
-   state.name.status;
-   name.parentNode.setAttribute("data-error-visible", etat);
+const displayError = (input, etat) => {
+   let name = input.name;//recupere le name dans l'input de l'html
+   let data = state[name]['data'];//recupere la data de l'objet state de l'input referent
+   let status = state[name]['status'];//recupere le status de l'objet state de l'input referent
+   
+   data = input.value;//state.firstName.data = firstName.value;
+   status  = !etat;//state.firstName.status = true; (le "!" inverse l'etat du parametre)
+   
+   input.parentNode.setAttribute("data-error-visible", etat);// firstName.parentNode.setAttribute("data-error-visible", "false");
 }
 
 //______________________________________________
 //FONCTION CHECK PRENOM_________________________
 const checkInputFirstName = () => {
    if (firstName.value.length > 2) {
-      state.firstName.data = firstName.value;
-      state.firstName.status = true;
-      firstName.parentNode.setAttribute("data-error-visible", "false");
+      // state.firstName.data = firstName.value;
+      // state.firstName.status = true;
+      // firstName.parentNode.setAttribute("data-error-visible", "false");
+      displayError(firstName, false);
    } else {
-      state.firstName.data = firstName.value;
-      state.firstName.status = false;
-      firstName.parentNode.setAttribute("data-error-visible", "true");
+      // state.firstName.data = firstName.value;
+      // state.firstName.status = false;
+      // firstName.parentNode.setAttribute("data-error-visible", "true");
+      displayError(firstName, true);
    }
 }
 
@@ -121,13 +128,15 @@ const checkInputFirstName = () => {
 //FONCTION CHECK NOM____________________________
 const checkInputLastName = () => {
    if (lastName.value.length > 2) {
-      state.lastName.data = lastName.value;
-      state.lastName.status = true;
-      lastName.parentNode.setAttribute("data-error-visible", "false");
+      // state.lastName.data = lastName.value;
+      // state.lastName.status = true;
+      // lastName.parentNode.setAttribute("data-error-visible", "false");
+      displayError(lastName, false);
    } else {
-      state.lastName.data = lastName.value;
-      state.lastName.status = false;
-      lastName.parentNode.setAttribute("data-error-visible", "true");
+      // state.lastName.data = lastName.value;
+      // state.lastName.status = false;
+      // lastName.parentNode.setAttribute("data-error-visible", "true");
+      displayError(lastName, true);
    }
 }
 
@@ -135,13 +144,15 @@ const checkInputLastName = () => {
 //FONCTION CHECK E-MAIL_________________________
 const checkInputEmail = () => {
    if (email.value.match(/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i)) {
-      state.email.data = email.value;
-      state.email.status = true;
-      email.parentNode.setAttribute("data-error-visible", "false");
+      // state.email.data = email.value;
+      // state.email.status = true;
+      // email.parentNode.setAttribute("data-error-visible", "false");
+      displayError(email, false);
    } else {
-      state.email.data = email.value;
-      state.email.status = false;
-      email.parentNode.setAttribute("data-error-visible", "true");
+      // state.email.data = email.value;
+      // state.email.status = false;
+      // email.parentNode.setAttribute("data-error-visible", "true");
+      displayError(email, true);
    }
 }
 
@@ -149,13 +160,15 @@ const checkInputEmail = () => {
 //FONCTION CHECK DATE DE NAISSANCE_______________
 const checkInputDate = () => {
    if (date.value == '') {
-      state.date.data = date.value;
-      state.date.status = false;
-      date.parentNode.setAttribute("data-error-visible", "true");
+      // state.date.data = date.value;
+      // state.date.status = false;
+      // date.parentNode.setAttribute("data-error-visible", "true");
+      displayError(date, false);
    } else {
-      state.date.data = creatDate();
-      state.date.status = true;
-      date.parentNode.setAttribute("data-error-visible", "false");
+      // state.date.data = creatDate();
+      // state.date.status = true;
+      // date.parentNode.setAttribute("data-error-visible", "false");
+      displayError(date, true);
    }
 }
 
@@ -164,13 +177,15 @@ const checkInputDate = () => {
 const checkInputContest = () => {
 
    if (contest.value == '') {
-      state.contest.data = contest.value;
-      state.contest.status = false;
-      contest.parentNode.setAttribute("data-error-visible", "true");
+      // state.contest.data = contest.value;
+      // state.contest.status = false;
+      // contest.parentNode.setAttribute("data-error-visible", "true");
+      displayError(contest, false);
    } else {
-      state.contest.data = contest.value;
-      state.contest.status = true;
-      contest.parentNode.setAttribute("data-error-visible", "false");
+      // state.contest.data = contest.value;
+      // state.contest.status = true;
+      // contest.parentNode.setAttribute("data-error-visible", "false");
+      displayError(contest, true);
    }
 }
 
@@ -183,42 +198,53 @@ const checkInputCity = () => {
       console.log(radioBtn.value);
       switch (radioBtn.value) {
          case "New York":
-            console.log(radioBtn.value);
-            state.city.status = true;
-            state.city.name = radioBtn.value;
-            city.setAttribute("data-error-visible", "false");
+            console.log(city.value);
+            // state.city.status = true;
+            // state.city.name = radioBtn.value;
+            // city.setAttribute("data-error-visible", "false");
+            displayError(city.value, false);
             break;
          case "San Francisco":
-            state.city.status = true;
-            state.city.name = radioBtn.value;
-            city.setAttribute("data-error-visible", "false");
+            // state.city.status = true;
+            // state.city.name = radioBtn.value;
+            // city.setAttribute("data-error-visible", "false");
+            displayError(city.value, false);
             break;
          case "Seattle":
-            state.city.status = true;
-            state.city.name = radioBtn.value;
-            city.setAttribute("data-error-visible", "false");
+            // state.city.status = true;
+            // state.city.name = radioBtn.value;
+            // city.setAttribute("data-error-visible", "false");
+            displayError(city.value, false);
             break;
          case "Chicago":
-            state.city.status = true;
-            state.city.name = radioBtn.value;
-            city.setAttribute("data-error-visible", "false");
+            // state.city.status = true;
+            // state.city.name = radioBtn.value;
+            // city.setAttribute("data-error-visible", "false");
+            displayError(city.value, false);
             break;
          case "Boston":
-            state.city.status = true;
-            state.city.name = radioBtn.value;
-            city.setAttribute("data-error-visible", "false");
+            // state.city.status = true;
+            // state.city.name = radioBtn.value;
+            // city.setAttribute("data-error-visible", "false");
+            displayError(city.value, false);
             break;
          case "Portland":
-            state.city.status = true;
-            state.city.name = radioBtn.value;
-            city.setAttribute("data-error-visible", "false");
+            // state.city.status = true;
+            // state.city.name = radioBtn.value;
+            // city.setAttribute("data-error-visible", "false");
+            console.log(radioBtn);
+            console.log(radioBtn.value);
+            displayError(city.value, false);
             break;
          default:
             break;
       }
    } else {
-      state.city.status = false;
-      city.setAttribute("data-error-visible", "true");
+      // state.city.status = false;
+      // city.setAttribute("data-error-visible", "true");
+      console.log(state);
+      console.log(radioBtn);
+      displayError(city.value, true);
    }
 }
 
@@ -227,15 +253,15 @@ const checkInputCity = () => {
 const checkInputCgu = () => {
 
    if (checkBox.checked == true) {
-      state.cgu.status = true;
-      checkBox.parentNode.setAttribute("data-error-visible", "false");
+      // state.cgu.status = true;
+      // checkBox.parentNode.setAttribute("data-error-visible", "false");
+      displayError(checkBox, false);
    } else {
-      state.cgu.status = false;
-      checkBox.parentNode.setAttribute("data-error-visible", "true");
+      // state.cgu.status = false;
+      // checkBox.parentNode.setAttribute("data-error-visible", "true");
+      displayError(checkBox, true);
    }
 }
-
-
 
 //_______________________________________________
 //FONCTION CHECK STATUS FORMULAIRE_______________
