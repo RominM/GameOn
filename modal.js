@@ -178,6 +178,8 @@ const checkInputDate = () => {
    }
 }
 
+date.addEventListener('input', checkInputDate);
+
 //_______________________________________________
 //FONCTION CHECK PARTICIPATION TOURNOIS__________
 const checkInputContest = () => {
@@ -253,6 +255,8 @@ const checkInputCity = () => {
       // displayError(city.value, true);
    }
 }
+
+city.addEventListener('input', checkInputCity);
 
 //_______________________________________________
 //FONCTION CHECK CGU_____________________________
