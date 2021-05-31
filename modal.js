@@ -274,6 +274,8 @@ const checkInputCgu = () => {
    }
 }
 
+checkBox.addEventListener('input', checkInputCgu);
+
 //_______________________________________________
 //FONCTION CHECK NEWSLETTRE______________________
 const checkNewsLetter = () => {
