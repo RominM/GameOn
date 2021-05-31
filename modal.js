@@ -5,11 +5,12 @@
 //GLOBAL ELEMENTS
 const modalbg = document.querySelector(".bground"); //bg formulaire
 const modalBtn = document.querySelectorAll(".modal-btn"); //Bouton "je m'inscris"
-const validPage = document.querySelector(".bground2");
+const modalbg2 = document.querySelector(".bground2"); //Page de remerciement
+const formData = document.querySelectorAll(".formData"); //<div> du formulaire qui contient les <input>
+const closeBtn = document.querySelector("#closeBtn"); //Bouton 'Fermer'
+const cross = document.querySelectorAll('.close'); //croix pour fermer 'modal'
 
 //FORM ELEMENTS
-const formData = document.querySelectorAll(".formData"); //<div> du formulaire qui contient les <input>
-const cross = document.querySelector('.close'); //croix pour fermer formulaire
 const firstName = document.querySelector('#first'); //<input> prenom
 const lastName = document.querySelector('#last'); //<input> nom
 const email = document.querySelector('#email'); //<input> email
@@ -298,12 +299,17 @@ const launchModal = () => {
 
 // launch modal form
 const launchValid = () => {
-   validPage.style.display = "block";
+   modalbg2.style.display = "block";
 }
 
 // Close modal form 'X Button'
 const closeModal = () => {
    modalbg.style.display = "none";
+   modalbg2.style.display = "none";
+}
+
+const closeThxPage = () => {
+   modalbg2.style.display = "none";
 }
 
 const globalCheck = () => {
@@ -337,7 +343,12 @@ modalBtn.forEach((Btn) => {
    Btn.addEventListener('click', launchModal)
 })
 // close modal event
-cross.addEventListener("click", closeModal);
+cross.forEach((Span) => {
+   Span.addEventListener("click", closeModal);
+})
+
+// close thxPage
+closeBtn.addEventListener("click", closeThxPage);
 
 // submit form event
 submitBtn.addEventListener('click', (event) => {

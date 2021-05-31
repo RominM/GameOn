@@ -56,12 +56,6 @@ img {
    font-family: Roboto, sans-serif;
 }
 
-.topnav a:hover {
-   background-color: #ff0000;
-   color: #ffffff;
-   border-radius: 15px;
-}
-
 .topnav a.active {
    background-color: #ff0000;
    color: #ffffff;
@@ -70,6 +64,8 @@ img {
 
 .topnav .icon {
    display: none;
+   padding-top: 25px;
+   color: #ff0000;
 }
 
 main {
@@ -496,6 +492,7 @@ input[data-error]::after {
    height: 100%;
    display: block;
    padding: 0;
+   object-fit: cover;
 }
 
 .copyrights {
@@ -604,13 +601,34 @@ footer {
 }
 
 @media screen and (max-width: 540px) {
+
    .topnav a {
       display: none;
    }
-
+   
    .topnav a.icon {
       float: right;
       display: block;
       margin-top: -15px;
+   }
+   
+   .header-logo {
+      width: 60%;
+   }
+   
+   .header-logo img{
+      width: 100%;
+   }
+   
+   .hero-content {
+      min-width: 200px;
+   }
+
+   .hero-headline {
+      font-size: 13vw;
+   }
+
+   .hero-text {
+      font-size: 4vw;
    }
 }
