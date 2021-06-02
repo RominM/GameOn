@@ -3,6 +3,7 @@
 // ========================//
 
 //GLOBAL ELEMENTS
+const form = document.querySelector("#subscribe"); //formulaire
 const modalbg = document.querySelector(".bground"); //bg formulaire
 const modalBtn = document.querySelectorAll(".modal-btn"); //Bouton "je m'inscris"
 const modalbg2 = document.querySelector(".bground2"); //Page de remerciement
@@ -215,31 +216,31 @@ const checkInputCity = () => {
             break;
          case "San Francisco":
             state.city.status = true;
-            state.city.name = radioBtn.value;
+            state.city.data = radioBtn.value;
             city.setAttribute("data-error-visible", "false");
             // displayError(city.value, false);
             break;
          case "Seattle":
             state.city.status = true;
-            state.city.name = radioBtn.value;
+            state.city.data = radioBtn.value;
             city.setAttribute("data-error-visible", "false");
             // displayError(city.value, false);
             break;
          case "Chicago":
             state.city.status = true;
-            state.city.name = radioBtn.value;
+            state.city.data = radioBtn.value;
             city.setAttribute("data-error-visible", "false");
             // displayError(city.value, false);
             break;
          case "Boston":
             state.city.status = true;
-            state.city.name = radioBtn.value;
+            state.city.data = radioBtn.value;
             city.setAttribute("data-error-visible", "false");
             // displayError(city.value, false);
             break;
          case "Portland":
             state.city.status = true;
-            state.city.name = radioBtn.value;
+            state.city.data = radioBtn.value;
             city.setAttribute("data-error-visible", "false");
             // console.log(radioBtn);
             // console.log(radioBtn.value);
@@ -302,6 +303,7 @@ const launchModal = () => {
 // launch modal form
 const launchValid = () => {
    modalbg2.style.display = "block";
+   form.reset();//vide formulaire
 }
 
 // Close modal form 'X Button'

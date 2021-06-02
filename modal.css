@@ -571,7 +571,7 @@ footer {
    }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) { /*1000px*/
    .topnav a {
       display: none;
    }
