@@ -11,14 +11,10 @@
     <link rel="icon" type="logo/svg" href="./gamepad-solid.svg">
 </head>
 
-
-
-
-
 <body>
     <div class="topnav" id="myTopnav">
         <div class="header-logo">
-            <img alt="logo" src="Logo.png" width="auto" height="auto" />
+            <img alt="logo" src="Logo.png" />
         </div>
         <div class="main-navbar">
 
@@ -31,7 +27,6 @@
                 <i class="fa fa-bars"></i>
             </a>
         </div>
-    </div>
     </div>
     <main>
         <div class="hero-section">
@@ -104,8 +99,7 @@
                         <p class="text-label">Quelle ville ?</p>
 
                         <!-- FORM DATA -->
-                        <div class="formData" data-error="Veuillez selectionner une ville" data-error-visible="false"
-                            id="city" name="city">
+                        <div class="formData" data-error="Veuillez selectionner une ville" data-error-visible="false" id="city" name="city" >
 
                             <!-- IN1 -->
                             <input class="checkbox-input" type="radio" id="location1" name="location"
@@ -148,12 +142,11 @@
 
                         </div>
 
-                        <div class="formData" data-error="Veuillez confirmer les conditions d'utilisation"
-                            data-error-visible="false" name="cgu">
+                        <div class="formData" data-error="Veuillez confirmer les conditions d'utilisation" data-error-visible="false" name="cgu" >
 
                             <!-- OBLIGATE CONDITIONS -->
                             <input class="checkbox-input" type="checkbox" id="checkbox1" checked />
-                            <label class="checkbox2-label" for="checkbox1" required>
+                            <label class="checkbox2-label" for="checkbox1" >
                                 <span class="checkbox-icon"></span>
                                 J'ai lu et accepté les conditions d'utilisation.
                             </label>
